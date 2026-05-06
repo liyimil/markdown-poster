@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "markdown-poster"
+version = "2.0.0"
+description = "Turn Markdown articles into beautifully formatted XHS (小红书) image cards"
+license = {text = "MIT"}
+authors = [
+    {name = "Markdown Poster Contributors"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "mistune>=3.0",
+    "playwright>=1.40",
+    "pyyaml>=6.0",
+    "click>=8.0",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+]
+
+[project.scripts]
+markdown-poster = "poster.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["poster*"]
