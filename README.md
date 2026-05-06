@@ -6,7 +6,8 @@
 
 ## 效果预览
 
-Markdown 正文 → HTML + CSS → Playwright 截图 → PNG / WebP 卡片，带标题、作者区、页码和页脚。
+![demo-01](assets/demo-01.png)
+![demo-02](assets/demo-02.png)
 
 ## 快速开始
 
@@ -23,19 +24,33 @@ markdown-poster article.md --auto-paginate -t "标题" -a "作者"
 
 ## 用法
 
-```bash
-# 自动分页 + 暗色主题 + WebP
-markdown-poster article.md --auto-paginate --theme dark --format webp
+### 基础示例
 
-# 固定 1080×1440 比例
-markdown-poster article.md --auto-paginate --fixed-height
+```bash
+# 进入项目目录，指定源文件路径即可
+cd markdown-poster
+markdown-poster article.md --auto-paginate -t "文章标题" -a "作者名"
+
+# 源文件也可以放在子目录
+markdown-poster examples/basic/article.md --auto-paginate -t "标题" -a "作者"
+
+# 带头像
+markdown-poster article.md --auto-paginate -t "标题" -a "作者" --avatar "C:\Users\asus\Downloads\avatar.jpg"
+
+# 暗色主题 + WebP
+markdown-poster article.md --auto-paginate -t "标题" -a "作者" --theme dark --format webp
+
+# 固定 1080×1440 比例（3:4）
+markdown-poster article.md --auto-paginate -t "标题" -a "作者" --fixed-height
 
 # YAML 配置驱动
 markdown-poster -c poster.yaml
 
-# 仅生成 HTML（不截图）
-markdown-poster article.md --auto-paginate --no-screenshot
+# 仅生成 HTML 预览（不截图）
+markdown-poster article.md --auto-paginate -t "标题" -a "作者" --no-screenshot --open
 ```
+
+输出默认在 `output/` 目录下，每张卡片按 `01.png`、`02.png`... 命名。
 
 ### 参数表
 

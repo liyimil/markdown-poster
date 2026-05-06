@@ -81,10 +81,11 @@ def _build_card_inner(body_html: str, page_num: int, config: PosterConfig) -> st
     total = config.total_pages if config.total_pages else 1
 
     if page_num == 1:
+        avatar_src = _avatar_uri(config.avatar)
         inner = f"""    <div class="content">
       <h1>{config.title}</h1>
       <div class="author-area">
-        <img src="{config.avatar}" alt="avatar">
+        <img src="{avatar_src}" alt="avatar">
         <div class="author-info">
           <div class="author-name">{config.author}</div>
           <div class="author-date">{config.date}</div>
@@ -106,6 +107,21 @@ def _build_card_inner(body_html: str, page_num: int, config: PosterConfig) -> st
     </div>"""
 
     return inner
+
+
+def _avatar_uri(path: str) -> str:
+    """Convert a local file path to a base64 data URI the browser can load."""
+    if not path:
+        return ""
+    import base64
+    p = Path(path).resolve()
+    if not p.exists():
+        return ""
+    raw = p.read_bytes()
+    b64 = base64.b64encode(raw).decode()
+    ext = p.suffix.lower().lstrip(".")
+    mime = {"jpg": "jpeg", "jpeg": "jpeg", "png": "png", "webp": "webp", "gif": "gif"}.get(ext, "jpeg")
+    return f"data:image/{mime};base64,{b64}"
 
 
 def _load_css(theme) -> str:
