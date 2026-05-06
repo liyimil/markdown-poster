@@ -1,6 +1,8 @@
 # markdown-poster
 
-**Markdown → 小红书图文卡片，一行命令出图。**
+<div align="center">
+  <strong>Markdown → 小红书图文卡片，一行命令出图。</strong>
+</div>
 
 <div align="center">
   <img src="assets/demo-03.png" alt="demo-03" width="70%">
